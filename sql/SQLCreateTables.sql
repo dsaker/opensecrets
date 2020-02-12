@@ -1,9 +1,9 @@
 --Campaign Finance Data
 
-CREATE TABLE CandsCRP14( 
+CREATE TABLE Candidates( 
  	Cycle char(4) NOT NULL, 
  	FECCandID char(9) NOT NULL, 
- 	CID char(9) NULL, 
+ 	CID char(9) PRIMARY KEY, 
  	FirstLastP varchar(50) NULL, 
  	Party char(1) NULL, 
  	DistIDRunFor char(4) NULL, 
@@ -13,12 +13,12 @@ CREATE TABLE CandsCRP14(
  	CRPICO char(1) NULL, 
  	RecipCode char(2) NULL, 
  	NoPacs char(1) NULL 
-) ON PRIMARY 
+)
  
  
-CREATE TABLE Cmtes14 ( 
+CREATE TABLE FECCommittees ( 
  	Cycle char(4) NOT NULL, 
- 	CmteID char(9) NOT NULL, 
+ 	CmteID char(9) PRIMARY KEY, 
  	PACShort varchar(50) NULL, 
  	Affiliate varchar(50) NULL, 
  	UltOrg varchar(50) NULL, 
@@ -31,10 +31,9 @@ CREATE TABLE Cmtes14 (
 	Sensitive char(1) NULL, 
  	Foreign bit NOT NULL, 
  	Active int NULL 
-) ON PRIMARY 
+)
  
- 
-CREATE TABLE PACs14 ( 
+CREATE TABLE PACtoCandidates ( 
  	Cycle char(4) NOT NULL, 
  	FECRecNo char(19)  NOT NULL, 
     PACID char(9)  NOT NULL, 
@@ -44,10 +43,11 @@ CREATE TABLE PACs14 (
  	RealCode char(5)  NULL, 
  	Type char(3)  NULL, 
  	DI char(1)  NOT NULL, 
- 	FECCandID char(9)  NULL 
-) ON PRIMARY 
+ 	FECCandID char(9)  NULL,
+	PRIMARY KEY (CID, PACID) 
+)
  
-CREATE TABLE Pac_Other14 ( 
+CREATE TABLE PACtoPAC ( 
  	Cycle char(4) NOT NULL, 
  	FECRecNo char(19)  NOT NULL, 
  	FilerID char(9)  NOT NULL, 
@@ -62,7 +62,7 @@ CREATE TABLE Pac_Other14 (
  	Amount float NULL, 
  	RecipID char(9)  NULL, 
  	Party char(1)  NULL, 
- 	OtherID char(9)  NULL, 
+ 	OtherID char(9)  PRIMARY KEY, 
  	RecipCode char(2)  NULL, 
  	RecipPrimcode char(5)  NULL, 
  	Amend char(1)  NULL, 
@@ -71,10 +71,11 @@ CREATE TABLE Pac_Other14 (
  	Microfilm char(11)  NULL, 
  	Type char(3)  NULL, 
  	Realcode char(5)  NULL, 
- 	Source char(5)  NULL 
-) ON PRIMARY 
+ 	Source char(5)  NULL,
+	PRIMARY KEY (Cycle, FECRecNo) 
+)
 
-CREATE TABLE dbo.Indivs14( 
+CREATE TABLE Individual( 
  	Cycle char(4) NOT NULL, 
  	FECTransID char(19) NOT NULL, 
  	ContribID char(12) NULL, 
@@ -96,10 +97,11 @@ CREATE TABLE dbo.Indivs14(
     Microfilm varchar(11) NULL, 
  	Occupation varchar(38) NULL, 
     Employer varchar(38) NULL,
-    Source char(5) NULL  
-) ON PRIMARY 
+    Source char(5) NULL,
+	PRIMARY KEY (Cycle, FECTransID)  
+)
 
-CREATE TABLE dbo.Expend14( 
+CREATE TABLE Expenditures( 
  	Cycle char(4) NOT NULL, 
  	TransID char(20) , 
  	CRPFilerid char(9) , 
@@ -108,7 +110,7 @@ CREATE TABLE dbo.Expend14(
  	CRPRecipName varchar(90) , 
  	ExpCode char(3) , 
  	Amount decimal(12, 0) NOT NULL, 
- 	Date smalldatetime NULL, 
+ 	Date date NULL, 
  	City varchar(30) , 
  	State char(2) , 
  	Zip char(9) , 
@@ -119,8 +121,9 @@ CREATE TABLE dbo.Expend14(
  	PG char(5) , 
  	ElecOther varchar(20) , 
  	EntType char(3) , 
- 	Source char(5) ) 
-) ON PRIMARY 
+ 	Source char(5) ) ,
+	PRIMARY KEY (Cycle, TransID)
+)
 
 --Lobbying
 
