@@ -1,0 +1,123 @@
+CREATE TABLE Candidates( 
+ 	Cycle char(4) NOT NULL, 
+ 	FECCandID char(9) NOT NULL, 
+ 	CID char(9) PRIMARY KEY, 
+ 	FirstLastP varchar(50) NULL, 
+ 	Party char(1) NULL, 
+ 	DistIDRunFor char(4) NULL, 
+ 	DistIDCurr char(4) NULL, 
+ 	CurrCand char(1) NULL, 
+ 	CycleCand char(1) NULL, 
+ 	CRPICO char(1) NULL, 
+ 	RecipCode char(2) NULL, 
+ 	NoPacs char(1) NULL 
+);
+ 
+CREATE TABLE FECCommittees ( 
+ 	Cycle char(4) NOT NULL, 
+ 	CmteID char(9) PRIMARY KEY, 
+ 	PACShort varchar(50) NULL, 
+ 	Affiliate varchar(50) NULL, 
+ 	UltOrg varchar(50) NULL, 
+ 	RecipID char(9) NULL, 
+ 	RecipCode char(2) NULL, 
+ 	FECCandID char(9) NULL, 
+ 	Party char(1) NULL, 
+ 	PrimCode char(5) NULL, 
+ 	Source char(10) NULL, 
+	Sensitive char(1) NULL, 
+ 	IsForeign bit NOT NULL, 
+ 	Active int NULL 
+);
+ 
+CREATE TABLE PACtoCandidates ( 
+ 	Cycle char(4) NOT NULL, 
+ 	FECRecNo char(19)  NOT NULL, 
+    PACID char(9)  NOT NULL, 
+ 	CID char(9)  NULL, 
+ 	Amount int DEFAULT (0), 
+ 	Date date NULL, 
+ 	RealCode char(5)  NULL, 
+ 	Type char(3)  NULL, 
+ 	DI char(1)  NOT NULL, 
+ 	FECCandID char(9)  NULL,
+	PRIMARY KEY (CID, PACID) 
+);
+ 
+CREATE TABLE PACtoPAC ( 
+ 	Cycle char(4) NOT NULL, 
+ 	FECRecNo char(19)  NOT NULL, 
+ 	FilerID char(9)  NOT NULL, 
+ 	DonorCmte varchar(50)  NULL, 
+ 	ContribLendTrans varchar(50)  NULL, 
+ 	City varchar(30)  NULL, 
+ 	State char(2)  NULL, 
+ 	Zip char(5)  NULL, 
+ 	FECOccEmp varchar(38)  NULL, 
+ 	PrimCode char(5)  NULL, 
+ 	Date date NULL, 
+ 	Amount float NULL, 
+ 	RecipID char(9)  NULL, 
+ 	Party char(1)  NULL, 
+ 	OtherID char(9)  NULL, 
+ 	RecipCode char(2)  NULL, 
+ 	RecipPrimcode char(5)  NULL, 
+ 	Amend char(1)  NULL, 
+ 	Report char(3)  NULL, 
+ 	PG char(1)  NULL, 
+ 	Microfilm char(11)  NULL, 
+ 	Type char(3)  NULL, 
+ 	Realcode char(5)  NULL, 
+ 	Source char(5)  NULL,
+	PRIMARY KEY (Cycle, FECRecNo) 
+);
+
+CREATE TABLE Individual( 
+ 	Cycle char(4) NOT NULL, 
+ 	FECTransID char(19) NOT NULL, 
+ 	ContribID char(12) NULL, 
+    Contrib varchar(50) NULL, 
+    RecipID char(9) NULL, 
+ 	Orgname varchar(50) NULL, 
+ 	UltOrg varchar(50) NULL, 
+ 	RealCode char(5) NULL, 
+ 	Date date NULL, 
+ 	Amount int NULL, 
+ 	City varchar (30) NULL, 
+ 	State char (2) NULL, 
+    Zip char (5) NULL, 
+ 	Recipcode char (2) NULL, 
+ 	Type char(3) NULL, 
+ 	CmteID char(9) NULL, 
+ 	OtherID char(9) NULL, 
+ 	Gender char(1) NULL, 
+    Microfilm varchar(11) NULL, 
+ 	Occupation varchar(38) NULL, 
+    Employer varchar(38) NULL,
+    Source char(5) NULL,
+	PRIMARY KEY (Cycle, FECTransID)  
+);
+
+CREATE TABLE Expenditures( 
+ 	Cycle char(4) NOT NULL, 
+ 	TransID char(20) , 
+ 	CRPFilerid char(9) , 
+ 	recipcode char(2) , 
+ 	pacshort varchar(50) , 
+ 	CRPRecipName varchar(90) , 
+ 	ExpCode char(3) , 
+ 	Amount decimal(12, 0) NOT NULL, 
+ 	Date date NULL, 
+ 	City varchar(30) , 
+ 	State char(2) , 
+ 	Zip char(9) , 
+ 	CmteID_EF char(9) , 
+ 	CandID char(9) , 
+ 	Type char(3) , 
+ 	Descrip varchar(100) , 
+ 	PG char(5) , 
+ 	ElecOther varchar(20) , 
+ 	EntType char(3) , 
+ 	Source char(5) ,
+	PRIMARY KEY (Cycle, TransID)
+);

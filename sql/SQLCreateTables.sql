@@ -13,7 +13,7 @@ CREATE TABLE Candidates(
  	CRPICO char(1) NULL, 
  	RecipCode char(2) NULL, 
  	NoPacs char(1) NULL 
-)
+);
  
  
 CREATE TABLE FECCommittees ( 
@@ -31,7 +31,7 @@ CREATE TABLE FECCommittees (
 	Sensitive char(1) NULL, 
  	Foreign bit NOT NULL, 
  	Active int NULL 
-)
+);
  
 CREATE TABLE PACtoCandidates ( 
  	Cycle char(4) NOT NULL, 
@@ -45,7 +45,7 @@ CREATE TABLE PACtoCandidates (
  	DI char(1)  NOT NULL, 
  	FECCandID char(9)  NULL,
 	PRIMARY KEY (CID, PACID) 
-)
+);
  
 CREATE TABLE PACtoPAC ( 
  	Cycle char(4) NOT NULL, 
@@ -73,7 +73,7 @@ CREATE TABLE PACtoPAC (
  	Realcode char(5)  NULL, 
  	Source char(5)  NULL,
 	PRIMARY KEY (Cycle, FECRecNo) 
-)
+);
 
 CREATE TABLE Individual( 
  	Cycle char(4) NOT NULL, 
@@ -99,7 +99,7 @@ CREATE TABLE Individual(
     Employer varchar(38) NULL,
     Source char(5) NULL,
 	PRIMARY KEY (Cycle, FECTransID)  
-)
+);
 
 CREATE TABLE Expenditures( 
  	Cycle char(4) NOT NULL, 
@@ -123,7 +123,7 @@ CREATE TABLE Expenditures(
  	EntType char(3) , 
  	Source char(5) ) ,
 	PRIMARY KEY (Cycle, TransID)
-)
+);
 
 --Lobbying
 
