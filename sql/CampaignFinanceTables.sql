@@ -1,7 +1,7 @@
 CREATE TABLE Candidates( 
  	Cycle char(4) NOT NULL, 
  	FECCandID char(9) NOT NULL, 
- 	CID char(9) PRIMARY KEY, 
+ 	CID char(9) NULL, 
  	FirstLastP varchar(50) NULL, 
  	Party char(1) NULL, 
  	DistIDRunFor char(4) NULL, 
