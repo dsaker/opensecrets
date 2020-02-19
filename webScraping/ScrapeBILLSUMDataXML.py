@@ -13,10 +13,10 @@ for year in congress:
         root = ET.fromstring(response.text)
         tree = ET.ElementTree(root)
         for child in root.iter('link'):
-            if child.text[-3:] != 'zip':
+            if child.text[-3:] == 'zip':
                 links.append(child.text)
 
-with open('billsLinks.json', 'w') as outfile:
+with open('BILLSUMzips.json', 'w') as outfile:
     json.dump(links, outfile)
 
 
