@@ -2,13 +2,13 @@ from bs4 import BeautifulSoup as bs
 import json
 import os
 
-congress = ['113']
+congress = ['115', '116']
 fields = ['bill_id', 'billsum_id', 'action_date', 'sponsor', 'sponsor_id', 'committe_name', 'committee_id', 'cosponsor', 'aciton_date', 'legis_type', 'resolution_body', 'legis_body']
-rows = []
 
 for con in congress:
     print(con)
-    directory = '../data/BILLSxml/' + con + '/'
+    rows = []
+    directory = '../../data/BILLSxml/' + con + '/'
     for filename in os.listdir(directory):
         row = {}
         #print(filename)
@@ -65,5 +65,5 @@ for con in congress:
                 row['legis_body'] = soup.find('legis-body').text.replace('\n', ' ').replace('\t', ' ')
             rows.append(row)
 
-    with open('BILLS'+ con + '.json', 'w') as jsonfile:
+    with open('../../data/BILLSJSON/BILLScomplete/BILLS'+ con + '.json', 'w') as jsonfile:
         json.dump(rows, jsonfile, indent=4)

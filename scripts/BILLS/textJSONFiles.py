@@ -3,8 +3,7 @@ import json
 import os
 import re
 
-congress = ['113', '114', '115', '116']
-textrows = []
+congress = ['114', '115', '116']
 
 '''def replaceUnicode(s):
     s = re.sub(u"(\u2018|\u2019)", "'", s)
@@ -19,7 +18,8 @@ textrows = []
     return s'''
 
 for con in congress:
-    filename = '../data/JSON/BILLS' + con + '.json'
+    filename = '../../data/BILLSJSON/BILLScomplete/BILLS' + con + '.json'
+    textrows = []
     with open(filename, 'r') as json_file:
         json_object = json.load(json_file)
         for row in json_object:
@@ -37,5 +37,5 @@ for con in congress:
             textrow['text'] = text
             textrows.append(textrow)
 
-    with open('BILLS'+ con + 'text.json', encoding='utf-8', mode='w') as jsonfile:
+    with open('../../data/BILLSJSON/BILLStext/'+ con + 'TextOnly.json', encoding='utf-8', mode='w') as jsonfile:
         json.dump(textrows, jsonfile, indent=4)
