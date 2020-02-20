@@ -19,14 +19,10 @@ for con in congress:
     with open(filename, 'r') as json_file:
         json_object = json.load(json_file)
         for row in json_object:
-            if row['bill_id'].startswith("BILLS-"+con+"s"):
-                s.append(row)
-            elif row['bill_id'].startswith("BILLS-"+con+"hjres"):
+            if row['bill_id'].startswith("BILLS-"+con+"hjres"):
                 hjres.append(row)
             elif row['bill_id'].startswith("BILLS-"+con+"hconres"):
                 hconres.append(row)
-            elif row['bill_id'].startswith("BILLS-"+con+"hr"):
-                hr.append(row)
             elif row['bill_id'].startswith("BILLS-"+con+"hres"):
                 hres.append(row)
             elif row['bill_id'].startswith("BILLS-"+con+"sconres"):
@@ -35,6 +31,10 @@ for con in congress:
                 sjres.append(row)
             elif row['bill_id'].startswith("BILLS-"+con+"sres"):
                 sres.append(row)
+            elif row['bill_id'].startswith("BILLS-"+con+"hr"):
+                hr.append(row)
+            elif row['bill_id'].startswith("BILLS-"+con+"s"):
+                            s.append(row)
             else:
                 missed.append(row)
         with open("../../data/BILLSJSON/BILLStext/"+con+"/hconres.json", 'w') as f:
