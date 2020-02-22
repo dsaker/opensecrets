@@ -14,5 +14,6 @@ for con in congress:
         csv_writer = csv.writer(csv_file)
         csv_writer.writerow(headers)
         for row in dj:
-            csv_writer.writerow((row['bill_id'], row['text']))
+            if row['text']:
+                csv_writer.writerow((row['bill_id'], row['text']))
         csv_file.close()
