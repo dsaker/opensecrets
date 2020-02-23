@@ -47,7 +47,7 @@ def extract_topn_from_vector(feature_names, sorted_items, topn=10):
 
 for bill in billType:
     print(bill)
-    dataset = pandas.read_csv('../data/BILLSCSV/114/'+bill+'.csv')
+    dataset = pandas.read_csv('../data/BILLSCSV/116/'+bill+'.csv')
 
     #Fetch wordcount for each abstract
     # dataset['wordcount'] = dataset['text'].apply(lambda x: len(str(x).split(" ")))
@@ -125,7 +125,7 @@ for bill in billType:
         keydict['keywords'] = words
         keywordArray.append(keydict)
 
-        with open('../data/BILLSKeywordsJSON/114/'+bill+'Keywords.json', 'w') as jf:
+        with open('../data/BILLSKeywordsJSON/116/'+bill+'Keywords.json', 'w') as jf:
             json.dump(keywordArray, jf, indent=4)
 
 '''
