@@ -38,7 +38,7 @@ def find_entities(bill):
     print("length = %d" % (len(entityArray)))
 
 def pool_handler():
-    p = Pool(6)
+    p = Pool(4)
     p.map(find_entities, billType)
 
 if __name__ == '__main__':
