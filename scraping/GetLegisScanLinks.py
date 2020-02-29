@@ -24,7 +24,8 @@ def parse_request(soup, bill_id):
             party, state = state.split('-')
             sponsor['party'] = party
             sponsor['state'] = state
-            sponsors.append(sponsor)
+            sponsor['href']= d.find('a').get('href')
+            sponsors.append(sponsor)       
     bill['sponsors'] = sponsors
     subjects = []
     if soup.find('h2', string='Subjects'):
@@ -36,8 +37,8 @@ def parse_request(soup, bill_id):
     bill['subjects'] = subjects
     bills.append(bill)
 
-year = '200/9'
-filename = year+'links.json'
+year = '2019'
+filename = '../data/LegisScanData/LinksStatus/'+year+'links.json'
 links = []
 with open(filename, 'r') as jf:
     json_object = json.load(jf)
@@ -50,5 +51,5 @@ for link in links:
     soup = BS(response.text, features="html.parser")
     parse_request(soup, bill_id)
 
-with open('SponsorsSubjects/'+year+'SponsorsSubjects.json', 'w') as jf:
+with open('../data/LegisScanData/SponsorsSubjects/'+year+'SponsorLinks.json', 'w') as jf:
     json.dump(bills, jf, indent=4)
